@@ -10,6 +10,7 @@ const Cart = ({ cartAllProduct, setCartAllProduct }) => {
       )
     );
   };
+
   const handleDecrement = (id) => {
     setCartAllProduct((prevCart) =>
       prevCart.map((item) =>
@@ -19,6 +20,7 @@ const Cart = ({ cartAllProduct, setCartAllProduct }) => {
       )
     );
   };
+
   const handleDeleteItem = (id) => {
     const filteredItem = cartAllProduct?.filter((item) => item?.id !== id);
     setCartAllProduct(filteredItem);
@@ -30,49 +32,48 @@ const Cart = ({ cartAllProduct, setCartAllProduct }) => {
         {cartAllProduct?.map((product) => {
           return (
             <div
-              className="col-8 border rounded d-flex gap-3"
+              className="col-12 col-sm-6 col-md-4 col-lg-3 border rounded d-flex gap-3 mb-3"
               key={product?.id}
             >
               <div className="p-1">
                 <img
                   src={product?.img}
                   alt={product?.model}
-                  className="cart-product-size"
+                  className="cart-product-size img-fluid"
                 />
               </div>
-              <div className="p-1 d-flex gap-3">
+              <div className="p-1 d-flex flex-column gap-3">
                 <div>
-                  <h3 className="text-hiding m-0">
-                    {product?.model?.toUpperCase()}
-                  </h3>
+                  <h3 className="text-hiding m-0">{product?.model?.toUpperCase()}</h3>
                   <p className="m-0 fs-5">
                     <span className="font-bold ">₹</span> {product?.price}
                   </p>
                   <p className="m-0 font-size-12 font-bold">{product?.space}</p>
-                  <p className="m-0 font-size-12 font-bold">
-                    {product?.camera}
-                  </p>
-                  <div className="d-flex gap-3 mt-1">
-                    <p
-                      className="m-0 border p-0 px-2 py-1 rounded pointer"
+                  <p className="m-0 font-size-12 font-bold">{product?.camera}</p>
+                  <div className="d-flex gap-3 mt-1 align-items-center">
+                    <button
+                      className="btn btn-outline-secondary"
                       onClick={() => handleDecrement(product?.id)}
                     >
                       -
-                    </p>
-                    <p className="m-0 ">{product?.count}</p>
-                    <p
-                      className="m-0  border p-0 px-2 py-1 rounded pointer"
+                    </button>
+                    <p className="m-0">{product?.count}</p>
+                    <button
+                      className="btn btn-outline-secondary"
                       onClick={() => handleIncrement(product?.id)}
                     >
                       +
-                    </p>
+                    </button>
                   </div>
                 </div>
 
-                <div className="d-flex">
-                  <p>{product?.description}</p>
-                  <p onClick={() => handleDeleteItem(product?.id)}>
-                    <i className="fa-solid fa-trash text-danger pointer"></i>
+                <div className="d-flex justify-content-between align-items-center">
+                  <p className="m-0">{product?.description}</p>
+                  <p
+                    className="m-0 pointer"
+                    onClick={() => handleDeleteItem(product?.id)}
+                  >
+                    <i className="fa-solid fa-trash text-danger"></i>
                   </p>
                 </div>
               </div>
@@ -80,9 +81,9 @@ const Cart = ({ cartAllProduct, setCartAllProduct }) => {
           );
         })}
 
-        {cartAllProduct.length == 0 && (
+        {cartAllProduct.length === 0 && (
           <div className="col-12">
-            <h1 className="text-center fs-3">No Products Availabe in Cart</h1>
+            <h1 className="text-center fs-3">No Products Available in Cart</h1>
           </div>
         )}
       </div>

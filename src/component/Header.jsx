@@ -5,8 +5,9 @@ const Header = ({ cartAllProduct }) => {
   return (
     <div className="container-fluid">
       <div className="row">
-        <div className="col-12 bg-primary d-flex justify-content-between px-5">
-          <ul className="d-flex gap-5 align-items-center m-0 p-0 py-3 ">
+        {/* Fixed header with higher z-index */}
+        <div className="col-12 bg-primary d-flex justify-content-between px-5 fixed-top shadow" style={{ zIndex: 1000 }}>
+          <ul className="d-flex gap-5 align-items-center m-0 p-0 py-3">
             <NavLink
               to="/"
               className="list-unstyled text-light p-0 pointer text-decoration-none"
@@ -23,9 +24,16 @@ const Header = ({ cartAllProduct }) => {
             >
               <i className="fa-solid fa-cart-shopping fs-3"></i>
             </NavLink>
+            {/* Cart item count */}
             <span
-              className="text-decoration-none count rounded-pill text-dark position-absolute top-0 roght"
-              style={{ backgroundColor: "orange", right:'-45%' }}
+              className="count rounded-pill text-light position-absolute top-0 end-0"
+              style={{
+                backgroundColor: "orange",
+                padding: "2px 8px",
+                fontSize: "0.9rem",
+                right: "-10px",
+                top: "5px"
+              }}
             >
               {cartAllProduct?.length}
             </span>
